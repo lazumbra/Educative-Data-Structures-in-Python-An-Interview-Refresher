@@ -33,20 +33,37 @@ def delete(lst, value):
         return True
     
     
-    
     return False
+
+def delete_at_tail(lst):
+
+    current_node = lst.get_head()
+
+    previ_node = None
+
+    if current_node == None:
+        return
+
+    while current_node.next_element is not None:
+        previ_node = current_node
+        current_node = current_node.next_element
+    
+    previ_node.next_element = current_node.next_element
+    current_node.next_element = None
+    
+
+
     
 
 
 
 lst = LinkedList()
-lst.insert_at_head(1)
-lst.insert_at_head(4)
+
 
 
 lst.print_list()
 
-delete(lst, 4)
+delete_at_tail(lst)
 
 #delete_at_head(lst)
 #delete_at_head(lst)
