@@ -58,3 +58,42 @@ class LinkedList:
         # o meu elmento objetivo.
         temp_node.next_element = new_node
         return
+
+    def length(self):
+        # Crio uma variável temporária na cabeça
+        curr = self.get_head()
+        length = 0
+
+        # Percorrer a lista
+        while curr in not None:
+            length += 1
+            curr = curr.next_element
+
+        return length
+
+    def print_list(self):
+        if(self.is_empty()):
+            print("Lista é vazia")
+            return False
+        # Criar uma variável para percorrer a lista
+        # Eu podria usar o self.get_head() também
+        temp_node = self.head_node
+        while temp_node.next_element is not None:
+            print(temp_node.data, end=" -> ")
+            temp_node = temp_node.next_element
+        print(temp_node.data, "-> None")
+        return True
+
+    def delete_at_head(self):
+        # criar um primeiro elemento para eu poder alocar a cabeça para outro ponto
+        first_element = self.get_head()
+
+        # Se o primeiro elemento for None, então não existe nada pra eu fazer
+        # Só existe alguma coisa pra eu fazer, caso a cabeça não seja
+        # none
+        if first_element is not None:
+            self.head_node = first_element.next_element
+            self.head_node.previous_element = None
+            first_element.next_element = None
+
+        return
