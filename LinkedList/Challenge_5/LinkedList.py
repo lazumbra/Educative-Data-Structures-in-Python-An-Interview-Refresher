@@ -65,7 +65,7 @@ class LinkedList:
         length = 0
 
         # Percorrer a lista
-        while curr in not None:
+        while curr != None:
             length += 1
             curr = curr.next_element
 
@@ -97,3 +97,72 @@ class LinkedList:
             first_element.next_element = None
 
         return
+
+    def delete(self, dt):
+        deleted = False
+        # Olhar se a lista é vazia
+        if self.is_empty():
+            print("Lista é vazia")
+            return deleted
+        # Olhar se o nó que eu quero deletar é a cabeça
+        """
+        PROBLEMA: EU acho que deveria ser apenas
+        if self.head_node.data == dt
+        Verificar se eu consigo deletar na cabeça depois.
+        Colocar a litsa 1 -> 2 -> None e tentar deletar
+        """
+        if self.head_node.data == dt:
+            self.delete_at_head()
+            deleted = True
+
+        # Caso eu não tenha deletado na cabeça. Então eu vou precisar percorrer
+        # a lista. Vou precisar de duas variáveis pra percorrer e poder deletar.
+        # perceba que aqui eu estou pegando o segundo elemento depois da cabeça, depois
+        # verificar isso.
+        # Acho que o previous node poderia ser a cabeça, na minha mente isso faz até
+        # mais sentido.
+        temp_node = self.head_node.next_element
+        previous_node = self.head_node
+
+        # Percorrer a lista
+        # usar o while para percorrer uma lista.
+        # Aredito que se eu tentar apagar o segundo elemento de uma linkedlist
+        # ex: 1 -> 2 -> 3 -> null. Tentar apagar o valor 2
+        while temp_node is not None and deleted is False:
+            if temp_node.data == dt:
+                previous_node.next_element = temp_node.next_element
+                deleted = True
+                break
+            previous_node = temp_node
+            temp_node = temp_node.next_element
+
+        if deleted is False:
+            print(dt, " is not in List!")
+        else:
+            print(dt, " is deleted")
+        return deleted
+
+    def search(self, dt):
+        """
+        Essa função retorna None caso não encontre o valor na lista.
+        Caso eu encontre o valor na lista retornar o nó
+        Caso a lista seja vazia, retornar None e um aviso que a lista é vazia.
+        """
+        if self.is_empty():
+            print("A Lista é vazia")
+            return None
+
+        # Quando for criar um temp node, sempre crie ele
+        # como a cabeça da lista
+        temp_node = self.head_node
+        # percorrer a lista. Para percorrer a lista é importante começar
+        # a parcorrer usando while
+        while temp_node is not None:
+            if temp_node.data == dt:
+                return temp_node
+            temp_node = temp_node.next_element
+
+        # Caso depois de eu percorrer toda a lista eu ainda não tenha encontrado
+        # o valor. Então fazer um print dizendo que eu não achei o valor
+        print(dt, " não está na lista")
+        return None
