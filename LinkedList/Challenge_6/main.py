@@ -6,3 +6,6 @@ minha_lista.insert_at_tail(2)
 minha_lista.insert_at_tail(3)
 
 minha_lista.print_list()
+
+minha_lista.delete_at_head()
+minha_lista.print_list()
