@@ -44,3 +44,14 @@ class LinkedList:
 
         temp_node.next_element = new_node
         return
+
+    def delete_at_head(self):
+        # first_element pode ser um elemento ou pode ser None
+        # Se ele for None eu não faço anda com ele, se ele foi um elemento
+        # entçao eu vou precisar desalocar ele no fim que eu fizer o delete.
+        first_element = self.get_head()
+        if not self.is_empty():
+            self.head_node = first_element.next_element
+            first_element.next_element = None
+            # Preciso desalocar o nó removido
+            return
