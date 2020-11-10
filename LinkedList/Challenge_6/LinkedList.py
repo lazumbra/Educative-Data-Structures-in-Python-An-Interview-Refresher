@@ -30,3 +30,17 @@ class LinkedList:
             temp_node = temp_node.next_element
         print("None")
         return True
+
+    def insert_at_tail(self, value):
+        new_node = Node(value)
+
+        if self.is_empty():
+            self.head_node = new_node
+            return
+
+        temp_node = self.head_node
+        while temp_node.next_element is not None:
+            temp_node = temp_node.next_element
+
+        temp_node.next_element = new_node
+        return
