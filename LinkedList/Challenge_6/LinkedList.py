@@ -52,6 +52,40 @@ class LinkedList:
         first_element = self.get_head()
         if not self.is_empty():
             self.head_node = first_element.next_element
-            first_element.next_element = None
             # Preciso desalocar o nó removido
+            first_element.next_element = None
+
             return
+
+    def delete(self, value):
+        if self.is_empty():
+            print("Lista vazia")
+            return False
+
+        deleted = False
+
+        aux_node = self.head_node
+        previous_element = None
+
+        # Verificar se o elemento que eu quero deletar
+        # é a cabeça
+        if aux_node.data == value:
+            self.head_node = aux_node.next_element
+            aux_node.next_element = None
+            return True
+
+        previous_element = aux_node
+        aux_node = aux_node.next_element
+
+        # O primeiro elemento não é o que eu quero deletar, então percorrer a Linkedlist
+        # procurando o valor que eu quero deletar.
+        while aux_node is not None:
+            if aux_node.data == value:
+                previous_element.next_element = aux_node.next_element
+                aux_node.next_element = None
+                deleted = True
+                break
+            previous_element = aux_node
+            aux_node = aux_node.next_element
+
+        return deleted
