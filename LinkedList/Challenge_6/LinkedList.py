@@ -89,3 +89,25 @@ class LinkedList:
             aux_node = aux_node.next_element
 
         return deleted
+
+    """
+    Se a lista for vazia eu retorno None e pŕintar "List is Empty"
+    Se eu achar o elemento, eu retorno o nó
+    Se eu percorrer até o fim e não achar o elemento ai eu retorno None tambem e 
+    "nó X is not in List!"
+    """
+
+    def search(self, dt):
+        if self.is_empty():
+            print("Lista está vazia")
+            return None
+
+        aux_node = self.get_head()
+
+        while aux_node is not None:
+            if aux_node.data == dt:
+                return aux_node
+            aux_node = aux_node.next_element
+
+        print("Nó", dt, "não está na lista")
+        return None
