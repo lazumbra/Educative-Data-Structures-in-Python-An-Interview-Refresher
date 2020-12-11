@@ -93,7 +93,7 @@ class LinkedList:
     """
     Se a lista for vazia eu retorno None e pŕintar "List is Empty"
     Se eu achar o elemento, eu retorno o nó
-    Se eu percorrer até o fim e não achar o elemento ai eu retorno None tambem e 
+    Se eu percorrer até o fim e não achar o elemento ai eu retorno None tambem e
     "nó X is not in List!"
     """
 
@@ -111,3 +111,21 @@ class LinkedList:
 
         print("Nó", dt, "não está na lista")
         return None
+
+    def length(self):
+        tamanho = 0
+        aux_node = self.get_head()
+        while aux_node != None:
+            aux_node = aux_node.next_element
+            tamanho += 1
+        return tamanho
+
+    def detect_loop(self):
+        ponteiro_um = self.head_node
+        ponteiro_dois = self.head_node
+        while ponteiro_um and ponteiro_dois and ponteiro_dois.next_element:
+            ponteiro_um = ponteiro_um.next_element
+            ponteiro_dois = ponteiro_dois.next_element.next_element
+            if ponteiro_dois == ponteiro_um:
+                return True
+        return False
