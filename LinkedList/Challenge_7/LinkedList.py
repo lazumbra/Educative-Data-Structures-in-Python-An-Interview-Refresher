@@ -18,14 +18,32 @@ class LinkedList:
         else:
             return False
 
-    """
-    Inserir um nó na cabeça
-    """
-
     def insert_at_head(self, valor):
+        """
+        Inserir um nó na cabeça
+        """
         temp_node = Node(valor)
         # Não entendo o motivo de quando eu insiro na cabeça
         # eu preciso apontar pra cabeça
         temp_node.next_element = self.head_node
         self.head_node = temp_node
         return self.head_node
+
+    def print_list(self):
+        """Insere um elemento na cabeça.
+        O retorno true ou false é só um uma forma de marcar se a lista
+        tem elemento ou não. Se não tem elemento a gente não imprime nada
+        por isso a gente retorna false. Se consegui imprimir a lista
+        completa ou imprimo true só prqa dizer.
+        """
+        if(self.is_empty()):
+            print("Lista é vazia")
+            return False
+
+        temp = self.head_node
+        while temp.next_element is not None:
+            print(temp.data, end=" -> ")
+            temp = temp.next_element
+
+        print(temp.data, "-> None")
+        return True
