@@ -69,3 +69,45 @@ class LinkedList:
 
         print(temp.data, "-> None")
         return True
+
+    def delete_at_head(self):
+        """Deletar um nó na cabeça"""
+
+        primeiro_elemento = self.get_head()
+
+        if (primeiro_elemento is not None):
+            self.head_node = primeiro_elemento.next_element
+            primeiro_elemento.next_element = None
+        return
+
+    def delete(self, valor):
+        """
+        Deletar um elemento da lista a partir do valor.
+        então eu vou encontrar na lista um elemento que tenha o mesmo
+        valor passado na função e então eu deleto esse nó da lista.
+        """
+        deleted = False
+
+        if self.is_empty():
+            print("Lista vazia")
+            return deleted
+
+        current_node = self.get_head()
+        previous_node = None
+
+        if current_node.data is valor:
+            self.delete_at_head()
+            deleted = True
+            return deleted
+
+        # Percorrer a lista
+        while current_node.next_element is not None:
+            if valor is current_node.data:
+                previous_node.next_element = current_node.next_element
+                current_node.next_element = None
+                deleted = True
+                break
+            previous_node = current_node
+            current_node = current_node.next_element
+
+        return deleted
