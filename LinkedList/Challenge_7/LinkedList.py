@@ -29,6 +29,28 @@ class LinkedList:
         self.head_node = temp_node
         return self.head_node
 
+    def insert_at_tail(self, valor):
+        """Insere um nó no fim da lista.
+
+        Se a lista for fazia, adicionar o elemento na cabeça.
+
+        Se a lista não for vazia, você vai precisar percorrer a lista
+        """
+
+        new_node = Node(valor)
+
+        if self.get_head() is None:
+            self.head_node = new_node
+            return
+
+        temp = self.get_head()
+
+        while temp.next_element is not None:
+            temp = temp.next_element
+
+        temp.next_element = new_node
+        return
+
     def print_list(self):
         """Insere um elemento na cabeça.
         O retorno true ou false é só um uma forma de marcar se a lista
